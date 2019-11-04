@@ -9,7 +9,8 @@ function createWindow () {
     height: 600,
     webPreferences: {
       nodeIntegration: true
-    }
+    },
+    icon: __dirname + '/public/icons/png/icon.png'
   })
 
   win.loadFile('index.html')

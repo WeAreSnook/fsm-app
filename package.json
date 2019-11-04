@@ -5,9 +5,9 @@
   "main": "main.js",
   "scripts": {
     "start": "electron .",
-    "build-mac": "electron-packager . --overwrite --platform darwin --arch x64 --out release-builds/",
-    "build-windows": "electron-packager . --overwrite --platform win32 --arch x64 --out release-builds/",
-    "create-installer": "electron-installer-windows --src release-builds/fsm-win32-x64/ --dest release-builds/installers/"
+    "build-mac": "electron-packager . --overwrite --platform darwin --arch x64 --icon public/icons/mac/icon.icns --prune true --out release-builds/",
+    "build-windows": "electron-packager . --overwrite --platform win32 --arch x64 --icon public/icons/ico/icon.ico --prune true --out release-builds/",
+    "create-installer": "yarn build-windows && electron-installer-windows --src release-builds/fsm-win32-x64/ --dest release-builds/installers/"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,13 @@
     "electron": "^7.0.0",
     "electron-installer-windows": "^2.0.0",
     "electron-packager": "^14.1.0"
+  },
+  "files": [
+    "./node_modules/**/*",
+    "./public/**/*",
+    "*.js"
+  ],
+  "directories": {
+    "buildResources": "public"
   }
 }
