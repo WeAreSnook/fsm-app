@@ -1,0 +1,75 @@
+body {
+  background-color: rgb(240, 22, 51);
+}
+
+h1,
+p {
+  color: white;
+}
+
+.container {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  font-size: 16px;
+  background-color: #e7e7e7;
+  color: black;
+  padding: 12px 28px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  border-radius: 4px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  max-width: 200px;
+}
+
+.run {
+  background-color: rgb(80, 202, 98);
+  color: white;
+  border: none;
+}
+
+.inputs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  margin-right: 20px;
+  margin-left: 20px;
+  background-color: rgb(247, 247, 247);
+  border-radius: 14px;
+}
+.inputs::after {
+  content: '';
+  flex: auto;
+}
+
+.input {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  margin-right: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  font-size: 16px;
+  color: rgba(18, 17, 17, 0.879);
+  margin-bottom: 5px;
+}
+
+.hint {
+  font-size: 12px;
+  color: rgba(48, 48, 48, 0.701);
+}
+
+.controls {
+  margin-top: 12px;
+  margin-bottom: 12px;
+  display: flex;
+  flex-direction: column;
+}
