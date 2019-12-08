@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8" />
-    <title>Free School Meals</title>
+    <title>Eligibility Checker</title>
     <!-- https://electronjs.org/docs/tutorial/security#csp-meta-tag -->
     <meta
       http-equiv="Content-Security-Policy"
@@ -11,72 +11,105 @@
     <link rel="stylesheet" type="text/css" href="./css/styles.css" />
   </head>
   <body>
+    <h1>Free School Meals</h1>
     <p>Select the output location, the input files and press run</p>
 
     <div class="container">
       <div class="inputs">
         <div class="input">
-          <span class="label">Output Destination:</span>
+          <div class="input-text">
+            <span class="label">Output Destination:</span>
+            <span class="hint">Where to save the report</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">Where to save the report</span>
         </div>
 
         <div class="input">
-          <span class="label">Benefit Extract:</span>
+          <div class="input-text">
+            <span class="label">Benefit Extract:</span>
+            <span class="hint">This should be an xlsx</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xlsx</span>
         </div>
 
         <div class="input">
-          <span class="label">SHBE:</span>
+          <div class="input-text">
+            <span class="label">SHBE:</span>
+            <span class="hint">This should be an xlsx</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xlsx</span>
         </div>
 
         <div class="input">
-          <span class="label">Universal Credit:</span>
+          <div class="input-text">
+            <span class="label">Universal Credit:</span>
+            <span class="hint">This should be an txt</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an txt</span>
         </div>
 
         <div class="input">
-          <span class="label">Current Awards:</span>
+          <div class="input-text">
+            <span class="label">Current Awards:</span>
+            <span class="hint">This should be an xlsx</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xlsx</span>
         </div>
 
         <div class="input">
-          <span class="label">School Roll:</span>
+          <div class="input-text">
+            <span class="label">School Roll:</span>
+            <span class="hint">This should be an xlsx</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xlsx</span>
         </div>
 
         <div class="input">
-          <span class="label">Consent360:</span>
+          <div class="input-text">
+            <span class="label">Consent360:</span>
+            <span class="hint">This should be an xlsx</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xlsx</span>
         </div>
 
         <div class="input">
-          <span class="label">Filter:</span>
+          <div class="input-text">
+            <span class="label">Filter:</span>
+            <span class="hint">This should be an xls</span>
+          </div>
           <button id="pickFile" type="button" class="btn">
             Choose a File
           </button>
-          <span class="hint">This should be an xls</span>
+        </div>
+
+        <div class="input">
+          <div class="input-text">
+            <span class="label">Universal Credit Limit:</span>
+            <span class="hint">Maximum monthly income</span>
+          </div>
+          <input class="field" type="text" name="value" />       
+        </div>
+
+        <div class="input">
+          <div class="input-text">
+            <span class="label">Rollover:</span>
+            <span class="hint">Tick this if running on a new school year</span>
+          </div>
+          <input type="checkbox" id="rollover" name="rollover">        
         </div>
       </div>
 
@@ -86,6 +119,12 @@
         </button>
       </div>
     </div>
+
+    <footer>
+      <img src='images/logo.svg' class="logo"/>
+    </footer>
+
+
     <script src="./index.js"></script>
   </body>
 </html>

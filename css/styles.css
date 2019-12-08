@@ -1,42 +1,58 @@
 body {
-  background-color: rgb(240, 22, 51);
+  background-color: rgb(247, 247, 247);
 }
 
 h1,
 p {
-  color: white;
+  color: rgb(74,74,74);
+  font-family: Tahoma, Arial, sans-serif;
 }
 
 .container {
   margin-top: 12px;
   margin-bottom: 12px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
 button {
-  font-size: 16px;
+  font-size: 14px;
   background-color: #e7e7e7;
   color: black;
-  padding: 12px 28px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
-  border-radius: 4px;
+  border-radius: 2px;
   margin-top: 5px;
   margin-bottom: 5px;
   max-width: 200px;
+  font-family: Tahoma, Arial, sans-serif;
+}
+
+.field {
+  font-size: 14px;
+  color: black;
+  color: rgb(74,74,74);
+  border-radius: 2px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  max-width: 200px;
+  font-family: Tahoma, Arial, sans-serif;
 }
 
 .run {
-  background-color: rgb(80, 202, 98);
+  background-color: rgb(52, 153, 64);
   color: white;
   border: none;
+  padding: 20px 20px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 8px;
 }
 
 .inputs {
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
   justify-content: space-around;
   margin-right: 20px;
   margin-left: 20px;
@@ -53,18 +69,27 @@ button {
   margin-bottom: 12px;
   margin-right: 20px;
   display: flex;
+  flex-direction: row;
+  min-width: 400px;
+  justify-content: space-between;
+}
+
+.input-text {
+  display: flex;
   flex-direction: column;
 }
 
 .label {
-  font-size: 16px;
+  font-size: 14px;
   color: rgba(18, 17, 17, 0.879);
-  margin-bottom: 5px;
+  margin-bottom: 3px;
+  font-family: Tahoma, Arial, sans-serif;
 }
 
 .hint {
   font-size: 12px;
   color: rgba(48, 48, 48, 0.701);
+  font-family: Tahoma, Arial, sans-serif;
 }
 
 .controls {
@@ -72,4 +97,18 @@ button {
   margin-bottom: 12px;
   display: flex;
   flex-direction: column;
+}
+
+footer {
+  background: white;
+  border-top: rgba(48, 48, 48, 0.701);
+  border-width: 1px;
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.logo {
+  width: 120px;
+  margin: 0 auto;
+  display: block;
 }
