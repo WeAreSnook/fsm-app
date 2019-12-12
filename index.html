@@ -16,100 +16,172 @@
 
     <div class="container">
       <div class="inputs">
-        <div class="input">
+        <div class="input" data-controller="picker" data-picker-name="output">
           <div class="input-text">
             <span class="label">Output Destination:</span>
-            <span class="hint">Where to save the report</span>
+            <span class="hint" data-target="picker.hint"
+              >Where to save the report</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
-            Choose a File
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFolder"
+          >
+            Choose a Directory
           </button>
         </div>
 
-        <div class="input">
+        <div
+          class="input"
+          data-controller="picker"
+          data-picker-name="benefitExtract"
+        >
           <div class="input-text">
             <span class="label">Benefit Extract:</span>
-            <span class="hint">This should be an xlsx</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xlsx</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div
+          class="input"
+          data-controller="picker"
+          data-picker-name="dependents"
+        >
           <div class="input-text">
             <span class="label">SHBE:</span>
-            <span class="hint">This should be an xlsx</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xlsx</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div
+          class="input"
+          data-controller="picker"
+          data-picker-name="universalCredit"
+        >
           <div class="input-text">
             <span class="label">Universal Credit:</span>
-            <span class="hint">This should be an txt</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an txt</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div class="input" data-controller="picker" data-picker-name="awards">
           <div class="input-text">
             <span class="label">Current Awards:</span>
-            <span class="hint">This should be an xlsx</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xlsx</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div
+          class="input"
+          data-controller="picker"
+          data-picker-name="schoolRoll"
+        >
           <div class="input-text">
             <span class="label">School Roll:</span>
-            <span class="hint">This should be an xlsx</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xlsx</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div class="input" data-controller="picker" data-picker-name="consent">
           <div class="input-text">
             <span class="label">Consent360:</span>
-            <span class="hint">This should be an xlsx</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xlsx</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div class="input" data-controller="picker" data-picker-name="filter">
           <div class="input-text">
             <span class="label">Filter:</span>
-            <span class="hint">This should be an xls</span>
+            <span class="hint" data-target="picker.hint"
+              >This should be an xls</span
+            >
           </div>
-          <button id="pickFile" type="button" class="btn">
+          <button
+            type="button"
+            class="btn"
+            data-action="click->picker#pickFile"
+          >
             Choose a File
           </button>
         </div>
 
-        <div class="input">
+        <div
+          class="input"
+          data-controller="picker"
+          data-picker-name="benefitAmount"
+        >
           <div class="input-text">
-            <span class="label">Universal Credit Limit:</span>
-            <span class="hint">Maximum monthly income</span>
+            <span class="label">Universal Credit Limit (£):</span>
+            <span class="hint" data-target="picker.hint"
+              >Maximum monthly income</span
+            >
           </div>
-          <input class="field" type="text" name="value" />       
+          <input class="field" type="text" name="value" value="610" />
         </div>
 
-        <div class="input">
+        <div class="input" data-controller="picker" data-picker-name="rollover">
           <div class="input-text">
             <span class="label">Rollover:</span>
-            <span class="hint">Tick this if running on a new school year</span>
+            <span class="hint" data-target="picker.hint"
+              >Tick this if running on a new school year</span
+            >
           </div>
-          <input type="checkbox" id="rollover" name="rollover">        
+          <input type="checkbox" id="rollover" name="rollover" />
         </div>
       </div>
 
@@ -121,9 +193,8 @@
     </div>
 
     <footer>
-      <img src='images/logo.svg' class="logo"/>
+      <img src="images/logo.svg" class="logo" />
     </footer>
-
 
     <script src="./index.js"></script>
   </body>
