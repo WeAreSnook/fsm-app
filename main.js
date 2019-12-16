@@ -12,7 +12,8 @@ function createWindow() {
     webPreferences: {
       nodeIntegration: true
     },
-    icon: __dirname + '/public/icons/png/icon.png'
+    icon: __dirname + '/public/icons/png/icon.png',
+    resizable: false
   })
 
   let outputDir = '/'
@@ -33,7 +34,7 @@ function createWindow() {
 
   // Open the DevTools.
   // TODO dev only
-  win.webContents.openDevTools()
+  // win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
@@ -90,6 +91,8 @@ function createWindow() {
     const options = {
       type: 'info',
       title: 'Generating Report',
+      message:
+        'Open the chosen output location to view the eligibility report. Open the report in Excel.',
       buttonLabel: 'Ok'
     }
     dialog.showMessageBox(win, options)
