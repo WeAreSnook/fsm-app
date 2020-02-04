@@ -2,10 +2,7 @@ const { ipcRenderer } = require('electron')
 const { Application, Controller } = require('stimulus')
 const application = Application.start()
 
-document.getElementById('run').addEventListener('click', () => {
-  ipcRenderer.send('generate')
-})
-
+// Picker handler
 application.register(
   'picker',
   class extends Controller {
@@ -32,3 +29,10 @@ application.register(
     }
   }
 )
+
+// Run button handling
+const runButton = document.getElementById('run')
+
+runButton.addEventListener('click', () => {
+  ipcRenderer.send('generate')
+})
