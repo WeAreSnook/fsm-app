@@ -108,14 +108,30 @@ function createWindow() {
     const command = `./${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --rollover=${paths.rollover}`
 
     exec(command, (err, stdout, stderr) => {
-      if (err != null) {
-        showError('Error running', 'There was an error running the algorithm')
+      var result
+      if (stdout != null) {
+        try {
+          result = JSON.parse(stdout)
+        } catch (err) {
+          result = null
+        }
+      }
+
+      if (err != null || result == null) {
+        showError({
+          title: 'Error running',
+          message: 'There was an error running the algorithm',
+          result
+        })
         return
       }
 
-      const result = JSON.parse(stdout)
       if (!result.success) {
-        showError('Error generating output', "The output couldn't be generated")
+        showError({
+          title: 'Error generating output',
+          message: "The output couldn't be generated",
+          result
+        })
         return
       }
 
@@ -128,11 +144,18 @@ function createWindow() {
         buttons: ['Close', 'Open Output Folder'],
         cancelId: 0
       }
+
+      if (result.log != null && result.log.length > 0) {
+        options.buttons = [...options.buttons, 'View Log']
+      }
+
       const successResult = dialog.showMessageBox(win, options)
-      successResult.then(result => {
-        // If they clicked the open output folder button
-        if (result.response === 1) {
+      successResult.then(messageResult => {
+        if (messageResult.response === 1) {
+          // If they clicked the open output folder button
           shell.openItem(paths.output)
+        } else if (messageResult.response === 2) {
+          showError({ title: 'Log', message: 'Log data', detail: result.log })
         }
       })
     })
@@ -155,12 +178,34 @@ app.on('activate', () => {
   }
 })
 
-function showError(title, message) {
+function showError(error) {
   const options = {
     type: 'error',
-    title: title,
-    message: message,
-    buttonLabel: 'Ok'
+    title: error.title,
+    message: error.message,
+    buttons: ['Close'],
+    cancelId: 0
   }
-  dialog.showMessageBox(win, options)
+
+  const result = error.result
+  if (result != null) {
+    if (result.log != null && result.log.length > 0) {
+      options.buttons = ['Close', 'View Log']
+    }
+
+    if (result.error != null) {
+      options.detail = result.error
+    }
+  }
+
+  if (error.detail != null) {
+    options.detail = error.detail
+  }
+
+  dialog.showMessageBox(win, options).then(messageResult => {
+    const showLog = messageResult.response === 1
+    if (showLog) {
+      showError({ title: 'Log', message: 'Log data', detail: result.log })
+    }
+  })
 }
