@@ -36,3 +36,30 @@ const runButton = document.getElementById('run')
 runButton.addEventListener('click', () => {
   ipcRenderer.send('generate')
 })
+
+// Loading
+const getLoader = () => document.querySelector('.loader')
+
+function isLoading() {
+  return !getLoader().classList.contains('hide')
+}
+
+ipcRenderer.on('hide-loading', () => {
+  if (!isLoading()) {
+    return
+  }
+
+  getLoader().classList.add('hide')
+  runButton.innerHTML = runButton.innerHTML.replace(
+    'Generating Report...',
+    'Generate Report'
+  )
+})
+
+ipcRenderer.on('show-loading', () => {
+  runButton.innerHTML = runButton.innerHTML.replace(
+    'Generate Report',
+    'Generating Report...'
+  )
+  getLoader().classList.remove('hide')
+})

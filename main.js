@@ -1,4 +1,11 @@
-const { app, BrowserWindow, ipcMain, shell, dialog } = require('electron')
+const {
+  app,
+  BrowserWindow,
+  ipcMain,
+  shell,
+  dialog,
+  globalShortcut
+} = require('electron')
 const { exec } = require('child_process')
 const path = require('path')
 
@@ -6,12 +13,19 @@ const isWindows = process.platform === 'win32'
 const executableFileName = isWindows ? 'fsm-processor.exe' : 'fsm-processor'
 
 // Keep a global reference of the window object, to prevent close on GC
-let win, progressWin
+let win
+
+let isExecuting = false
+function setLoading(loading) {
+  isExecuting = loading
+  const eventName = loading ? 'show-loading' : 'hide-loading'
+  win.webContents.send(eventName)
+}
 
 function createWindow() {
   win = new BrowserWindow({
     width: 475,
-    height: 800,
+    height: 820,
     webPreferences: {
       nodeIntegration: true
     },
@@ -71,7 +85,6 @@ function createWindow() {
         const fileName = path.basename(filePath)
         paths[name] = filePath
         event.reply(`picked-${name}`, fileName)
-        updateInputValidity()
       })
   })
 
@@ -92,21 +105,32 @@ function createWindow() {
         }
 
         const filePath = file.filePaths[0]
-        const dirName = path.basename(path.dirname(filePath))
+        const dirName = path.basename(filePath)
         paths[name] = filePath
         event.reply(`picked-${name}`, dirName)
-        updateInputValidity()
       })
   })
 
   ipcMain.on('generate', event => {
+    if (isExecuting) {
+      showError({
+        title: 'Processing',
+        message: 'Already processing, please wait until finished'
+      })
+      return
+    }
+
     if (!hasValidInputs()) {
-      showError('Missing inputs', 'Please select all input files')
+      showError({
+        title: 'Missing inputs',
+        message: 'Please select all input files and an output folder'
+      })
       return
     }
 
     const command = `./${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --rollover=${paths.rollover}`
 
+    setLoading(true)
     exec(command, (err, stdout, stderr) => {
       var result
       if (stdout != null) {
@@ -123,6 +147,7 @@ function createWindow() {
           message: 'There was an error running the algorithm',
           result
         })
+        setLoading(false)
         return
       }
 
@@ -132,10 +157,13 @@ function createWindow() {
           message: "The output couldn't be generated",
           result
         })
+        setLoading(false)
         return
       }
 
       // Success!
+      setLoading(false)
+
       const options = {
         type: 'info',
         title: 'Generated Report',
@@ -162,7 +190,12 @@ function createWindow() {
   })
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+
+  // Disable refreshing
+  globalShortcut.register('CmdOrCtrl+R', () => {})
+})
 
 app.on('window-all-closed', () => {
   // Keep the app open when windows are closed on macOS

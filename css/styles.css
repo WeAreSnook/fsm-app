@@ -29,6 +29,10 @@ button {
   font-family: Tahoma, Arial, sans-serif;
 }
 
+.run.btn:focus {
+  outline-color: 0;
+}
+
 .field {
   font-size: 14px;
   color: black;
@@ -44,10 +48,60 @@ button {
   background-color: rgb(52, 153, 64);
   color: white;
   border: none;
-  padding: 20px 20px;
+  padding: 20px;
   margin: 0 auto;
   display: block;
   border-radius: 8px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.hide {
+  display: none;
+}
+
+.loader,
+.loader:after {
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+}
+.loader {
+  margin-left: 10px;
+  font-size: 10px;
+  position: relative;
+  text-indent: -9999em;
+  border-top: 0.5em solid rgba(255, 255, 255, 0.2);
+  border-right: 0.5em solid rgba(255, 255, 255, 0.2);
+  border-bottom: 0.5em solid rgba(255, 255, 255, 0.2);
+  border-left: 0.5em solid #ffffff;
+  -webkit-transform: translateZ(0);
+  -ms-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-animation: load8 1.1s infinite linear;
+  animation: load8 1.1s infinite linear;
+}
+@-webkit-keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
+}
+@keyframes load8 {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+    transform: rotate(360deg);
+  }
 }
 
 .inputs {
