@@ -10,7 +10,9 @@ const { exec } = require('child_process')
 const path = require('path')
 
 const isWindows = process.platform === 'win32'
-const executableFileName = isWindows ? 'fsm-processor.exe' : './fsm-processor'
+const executableFileName = isWindows
+  ? path.join(__dirname, 'fsm-processor.exe')
+  : 'fsm-processor'
 
 // Keep a global reference of the window object, to prevent close on GC
 let win
@@ -142,10 +144,12 @@ function createWindow() {
       }
 
       if (err != null || result == null) {
+        const detail = result == null ? stderr : result.error
+
         showError({
           title: 'Error running',
           message: 'There was an error running the algorithm',
-          result
+          detail
         })
         setLoading(false)
         return
