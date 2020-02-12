@@ -12,7 +12,7 @@ const path = require('path')
 const isWindows = process.platform === 'win32'
 const executableFileName = isWindows
   ? path.join(__dirname, 'fsm-processor.exe')
-  : 'fsm-processor'
+  : './fsm-processor'
 
 // Keep a global reference of the window object, to prevent close on GC
 let win
@@ -27,7 +27,7 @@ function setLoading(loading) {
 function createWindow() {
   win = new BrowserWindow({
     width: 475,
-    height: 820,
+    height: 880,
     webPreferences: {
       nodeIntegration: true
     },
@@ -45,6 +45,7 @@ function createWindow() {
     consent: null,
     filter: null,
     benefitAmount: 610.0,
+    ctcWtcFigure: 6420.0,
     rollover: false
   }
 
@@ -130,7 +131,7 @@ function createWindow() {
       return
     }
 
-    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --rollover=${paths.rollover}`
+    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --ctcwtcfigure=${paths.ctcWtcFigure} --rollover=${paths.rollover}`
 
     setLoading(true)
     exec(command, (err, stdout, stderr) => {
