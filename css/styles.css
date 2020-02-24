@@ -106,13 +106,20 @@ button {
 
 .inputs {
   display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  flex-direction: row;
+  justify-content: space-between;
   margin-right: 20px;
   margin-left: 20px;
   background-color: rgb(247, 247, 247);
   border-radius: 14px;
 }
+
+.column {
+  display: flex;
+  flex-direction: column;
+  margin-right: 20px;
+}
+
 .inputs::after {
   content: '';
   flex: auto;
@@ -121,7 +128,6 @@ button {
 .input {
   margin-top: 12px;
   margin-bottom: 12px;
-  margin-right: 20px;
   display: flex;
   flex-direction: row;
   min-width: 400px;

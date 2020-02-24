@@ -26,8 +26,8 @@ function setLoading(loading) {
 
 function createWindow() {
   win = new BrowserWindow({
-    width: 475,
-    height: 880,
+    width: 875,
+    height: 700,
     webPreferences: {
       nodeIntegration: true
     },
@@ -45,6 +45,7 @@ function createWindow() {
     consent: null,
     filter: null,
     benefitAmount: 610.0,
+    ctcFigure: 16105.0,
     ctcWtcFigure: 6420.0,
     rollover: false
   }
@@ -114,6 +115,10 @@ function createWindow() {
       })
   })
 
+  ipcMain.on('updateValue', (event, name, value) => {
+    paths[name] = value
+  })
+
   ipcMain.on('generate', event => {
     if (isExecuting) {
       showError({
@@ -131,7 +136,7 @@ function createWindow() {
       return
     }
 
-    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --ctcwtcfigure=${paths.ctcWtcFigure} --rollover=${paths.rollover}`
+    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --ctcfigure=${paths.ctcFigure} --ctcwtcfigure=${paths.ctcWtcFigure} --rollover=${paths.rollover}`
 
     setLoading(true)
     exec(command, (err, stdout, stderr) => {

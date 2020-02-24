@@ -20,6 +20,14 @@ application.register(
       ipcRenderer.send('openFolder', this.name)
     }
 
+    updateValue(event) {
+      ipcRenderer.send('updateValue', this.name, event.target.value)
+    }
+
+    updateBool(event) {
+      ipcRenderer.send('updateValue', this.name, event.target.checked)
+    }
+
     get name() {
       return this.data.get('name')
     }
