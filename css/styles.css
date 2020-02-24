@@ -172,3 +172,11 @@ footer {
   margin: 0 auto;
   display: block;
 }
+
+.version {
+  margin: 0;
+  margin-top: 40px;
+  padding: 0;
+  text-align: center;
+  color: #666;
+}
