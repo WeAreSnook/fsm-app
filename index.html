@@ -226,6 +226,21 @@
             </div>
             <input type="checkbox" id="rollover" name="rollover" />
           </div>
+
+          <div
+            class="input"
+            data-controller="picker"
+            data-picker-name="awardCG"
+            data-action="input->picker#updateBool"
+          >
+            <div class="input-text">
+              <span class="label">Award CG:</span>
+              <span class="hint" data-target="picker.hint"
+              >Tick this if Clothing Grant should be awarded to qualifying dependents</span
+              >
+            </div>
+            <input type="checkbox" checked id="awardCG" name="rollover" />
+          </div>
         </div>
       </div>
 

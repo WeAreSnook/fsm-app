@@ -47,7 +47,8 @@ function createWindow() {
     benefitAmount: 610.0,
     ctcFigure: 16105.0,
     ctcWtcFigure: 6420.0,
-    rollover: false
+    rollover: false,
+    awardCG: true
   }
 
   function hasValidInputs() {
@@ -136,7 +137,7 @@ function createWindow() {
       return
     }
 
-    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --ctcfigure=${paths.ctcFigure} --ctcwtcfigure=${paths.ctcWtcFigure} --rollover=${paths.rollover}`
+    const command = `${executableFileName} --output="${paths.output}" --awards="${paths.awards}"  --benefitextract="${paths.benefitExtract}" --dependents="${paths.dependents}" --universalcredit="${paths.universalCredit}" --awards="${paths.awards}" --schoolroll="${paths.schoolRoll}" --consent="${paths.consent}" --filter="${paths.filter}" --benefitamount=${paths.benefitAmount} --ctcfigure=${paths.ctcFigure} --ctcwtcfigure=${paths.ctcWtcFigure} --rollover=${paths.rollover} --awardcg=${paths.awardCG}`
 
     setLoading(true)
     exec(command, (err, stdout, stderr) => {
