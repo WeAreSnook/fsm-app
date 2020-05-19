@@ -2,7 +2,7 @@
 
 App for indicating eligibility for free school meal entitlement for pupils in North Lanarkshire Schools.
 
-The app makes use of the `fsm-processor` repo under the hood to parse the inputs and create the relevant output files.
+The app is a simple wrapper around the `fsm-processor` executable. It takes input spreadsheets and configuration options and passes them to `fsm-processor` for parsing in order to create the relevant output files.
 
 *Do not commit any personal data into this repository*
 
