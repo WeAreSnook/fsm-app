@@ -19,7 +19,7 @@
   },
   "homepage": "https://github.com/AddJam/fsm-app#readme",
   "devDependencies": {
-    "electron": "^11.0.1",
+    "electron": "^11.5.0",
     "electron-installer-windows": "^2.0.0",
     "electron-packager": "^14.1.0"
   },
